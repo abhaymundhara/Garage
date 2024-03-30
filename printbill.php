@@ -46,8 +46,10 @@ $conn = Connect();
             <li><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Control Panel <span class="caret"></span> </a>
                 <ul class="dropdown-menu">
               <li> <a href="entercar.php">Add Car</a></li>
-              <li> <a href="enterdriver.php"> Add Driver</a></li>
-              <li> <a href="clientview.php">View</a></li>
+              <li> <a href="entercustomer.php"> Add Customer</a></li>
+              <li> <a href="employeeview.php">View</a></li>
+              <li> <a href="prereturncar.php">Return Now</a></li>
+              <li> <a href="mybookings.php"> My Bookings</a></li>
 
             </ul>
             </li>
@@ -61,32 +63,7 @@ $conn = Connect();
             
             <?php
                 }
-                else if (isset($_SESSION['login_customer'])){
-            ?>
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="index.php">Home</a>
-                    </li>
-                    <li>
-                        <a href="#"><span class="glyphicon glyphicon-user"></span> Welcome <?php echo $_SESSION['login_customer']; ?></a>
-                    </li>
-                    <ul class="nav navbar-nav">
-            <li><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Garagge <span class="caret"></span> </a>
-                <ul class="dropdown-menu">
-              <li> <a href="prereturncar.php">Return Now</a></li>
-              <li> <a href="mybookings.php"> My Bookings</a></li>
-            </ul>
-            </li>
-          </ul>
-                    <li>
-                        <a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-                    </li>
-                </ul>
-            </div>
-
-            <?php
-            }
+                
                 else {
             ?>
 
@@ -96,13 +73,10 @@ $conn = Connect();
                         <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="clientlogin.php">Employee</a>
+                        <a href="employeelogin.php">Employee</a>
                     </li>
                     <li>
-                        <a href="customerlogin.php">Customer</a>
-                    </li>
-                    <li>
-                        <a href="#"> FAQ </a>
+                        <a href="admin/index.php">Admin Panel</a>
                     </li>
                 </ul>
             </div>
@@ -120,11 +94,11 @@ $distance = NULL;
 $distance_or_days = $conn->real_escape_string($_POST['distance_or_days']);
 $fare = $conn->real_escape_string($_POST['hid_fare']);
 $total_amount = $distance_or_days * $fare;
-$car_return_date = date('Y-m-d');
+$car_return_date = date('d-m-Y');
 $return_status = "R";
 $login_customer = $_SESSION['login_customer'];
 
-$sql0 = "SELECT rc.id, rc.rent_end_date, rc.charge_type, rc.rent_start_date, c.car_name, c.car_nameplate FROM rentedcars rc, cars c WHERE id = '$id' AND c.car_id = rc.car_id";
+$sql0 = "SELECT rc.id, rc.rent_end_date, rc.rent_start_date, c.car_name, c.car_nameplate FROM rentedcars rc, cars c WHERE id = '$id' AND c.car_id = rc.car_id";
 $result0 = $conn->query($sql0);
 
 if(mysqli_num_rows($result0) > 0) {
@@ -133,7 +107,7 @@ if(mysqli_num_rows($result0) > 0) {
             $rent_start_date = $row0["rent_start_date"];
             $car_name = $row0["car_name"];
             $car_nameplate = $row0["car_nameplate"];
-            $charge_type = $row0["charge_type"];
+            
     }
 }
 

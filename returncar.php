@@ -128,27 +128,15 @@ function dateDiff($start, $end) {
 
            <h5> End Date:&nbsp;  <?php echo($rent_end_date);?></h5>
 
-           <h5> Fare:&nbsp;  Rs. <?php 
-            if($charge_type == "days"){
-                    echo ($fare . "/day");
-                } else {
-                    echo ($fare . "/km");
-                }
-            ?>
-            </h5>
-
+           <h5> Fare:&nbsp;  Rs. <?php echo($fare);?></h5>
+        
            <h5> customer Name:&nbsp;  <?php echo($customer_name);?></h5>
 
            <h5> customer Contact:&nbsp;  <?php echo($customer_phone);?></h5>
-          <?php if($charge_type == "km") { ?>
-          <div class="form-group">
-            <input type="text" class="form-control" id="distance_or_days" name="distance_or_days" placeholder="Enter the distance travelled (in km)" required="" autofocus>
-          </div>
-          <?php }  else { ?>
-            <h5> Number of Day(s):&nbsp;  <?php echo($no_of_days);?></h5>
-            <input type="hidden" name="distance_or_days" value="<?php echo $no_of_days; ?>">
-          <?php } ?>
-          <input type="hidden" name="hid_fare" value="<?php echo $fare; ?>">
+         
+           <h5> Number of Day(s):&nbsp;  <?php echo($no_of_days);?></h5>
+           <input type="hidden" name="distance_or_days" value="<?php echo $no_of_days; ?>">
+           <input type="hidden" name="hid_fare" value="<?php echo $fare; ?>">
 
            <input type="submit" name="submit" value="submit" class="btn btn-success pull-right">    
         </form>

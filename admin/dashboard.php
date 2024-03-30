@@ -60,7 +60,7 @@ else{
 											<div class="panel-body bk-primary text-light">
 												<div class="stat-panel text-center">
 <?php 
-$sql ="SELECT id from customers ";
+$sql ="SELECT id from customer ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -78,14 +78,14 @@ $cust=$query->rowCount();
 											<div class="panel-body bk-success text-light">
 												<div class="stat-panel text-center">
 												<?php 
-$sql1 ="SELECT id from vehicles ";
+$sql1 ="SELECT id from cars ";
 $query1 = $dbh -> prepare($sql1);;
 $query1->execute();
 $results1=$query1->fetchAll(PDO::FETCH_OBJ);
 $totalvehicle=$query1->rowCount();
 ?>
 													<div class="stat-panel-number h1 "><?php echo htmlentities($totalvehicle);?></div>
-													<div class="stat-panel-title text-uppercase">Listed Vehicles</div>
+													<div class="stat-panel-title text-uppercase">Listed Cars</div>
 												</div>
 											</div>
 											<a href="manage-vehicles.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>

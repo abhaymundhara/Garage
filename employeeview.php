@@ -88,7 +88,7 @@ $conn = Connect();
  
 <?php $login_employee = $_SESSION['login_employee']; 
 
-    $sql1 = "SELECT * FROM rentedcars rc, employeecars cc, customer c, cars WHERE  cc.car_id = rc.car_id AND rc.return_status = 'R' AND c.customer_username = rc.customer_username AND cc.car_id = cars.car_id";
+    $sql1 = "SELECT * FROM rentedcars rc, employeecars cc, customer c, cars WHERE  cc.car_id = rc.car_id AND c.customer_username = rc.customer_username AND cc.car_id = cars.car_id";
 
     $result1 = $conn->query($sql1);
 
@@ -109,7 +109,7 @@ $conn = Connect();
 <th width="15%">Customer Name</th>
 <th width="20%">Rent Start Date</th>
 <th width="20%">Rent End Date</th>
-<th width="10%">Distance</th>
+<th width="10%">Return Status</th>
 <th width="15%">Total Amount</th>
 </tr>
 </thead>
@@ -118,10 +118,10 @@ $conn = Connect();
 ?>
 <tr>
 <td><?php echo $row["car_name"]; ?></td>
-<td><?php echo $row["customer_name"]; ?></td>
+<td><?php echo $row["customer_username"]; ?></td>
 <td><?php echo $row["rent_start_date"] ?></td>
 <td><?php echo $row["rent_end_date"]; ?></td>
-<td><?php echo $row["distance"]; ?></td>
+<td><?php echo $row["return_status"]; ?></td>
 <td>Rs. <?php echo $row["total_amount"]; ?></td>
 </tr>
 <?php        } ?>

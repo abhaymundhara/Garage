@@ -93,20 +93,23 @@
 require 'connection.php';
 $conn = Connect();
 
-$customer_name = $conn->real_escape_string($_POST['customer_name']);
-$dl_number = ($_POST['dl_number']);
-$customer_phone = ($_POST['customer_phone']);
-$customer_address = ($_POST['customer_address']);
-$customer_city = ($_POST['customer_city']);
+$customer_name = $conn->real_escape_string($_POST['customer_username']);
+$dl_number = $conn->real_escape_string($_POST['dl_number']);
+$customer_phone = $conn->real_escape_string($_POST['customer_phone']);
+$customer_address = $conn->real_escape_string($_POST['customer_address']);
+$customer_city = $conn->real_escape_string($_POST['customer_city']);
+$customer_email = $conn->real_escape_string($_POST['customer_email']);
+$ref_by = $conn->real_escape_string($_POST['ref_by']);
+$employee_username = $_SESSION['login_employee'];
 
-
-$query = "INSERT into customer(customer_name,dl_number,customer_phone,customer_address,customer_city) VALUES('" . $customer_name . "','" . $dl_number . "','" . $customer_phone . "','" . $customer_address . "','" . $customer_city ."')";
+$query = "INSERT into customer(customer_username,dl_number,customer_phone,customer_address,customer_city,customer_email,customer_refby,employee_username) VALUES('" . $customer_name . "','" . $dl_number . "','" . $customer_phone . "','" . $customer_address . "','" . $customer_city ."','" . $customer_email ."','" . $ref_by ."','" . $employee_username ."')";
 $success = $conn->query($query);
 
 if (!$success){ ?>
     <div class="container">
         <div class="jumbotron" style="text-align: center;">
             Failed to add!
+            <?php echo $conn->error; ?>
             <br><br>
             <a href="entercustomer.php" class="btn btn-default"> Go Back </a>
         </div>

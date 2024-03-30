@@ -25,12 +25,12 @@ if(!isset($_SESSION['login_employee'])){
 <?php
 
 
-    
-    $customer_id = $_POST['customer_id_from_dropdown'];
-    $customer_name = $conn->real_escape_string($_POST['hidden_customername']);
+    $charge_type = $_POST['radio1'];
+    $customer_name = $_POST['customer_name_from_dropdown'];
+    $customer_id = $conn->real_escape_string($_POST['hidden_customerid']);
     $car_id = $conn->real_escape_string($_POST['hidden_carid']);
-    $rent_start_date = date('Y-m-d', strtotime($_POST['rent_start_date']));
-    $rent_end_date = date('Y-m-d', strtotime($_POST['rent_end_date']));
+    $rent_start_date = date('d-m-Y', strtotime($_POST['rent_start_date']));
+    $rent_end_date = date('d-m-Y', strtotime($_POST['rent_end_date']));
     $return_status = "NR"; // not returned
     $fare = $_POST['fare'];
 
@@ -57,7 +57,7 @@ if(!isset($_SESSION['login_employee'])){
     $result2 = $conn->query($sql2);
 
 
-    $sql4 = "SELECT * FROM  cars c, employees cl, customer d, rentedcars rc WHERE c.car_id = '$car_id' AND d.customer_id = '$customer_id'";
+    $sql4 = "SELECT * FROM  cars c, customer d, rentedcars rc WHERE c.car_id = '$car_id' AND d.customer_id = '$customer_id'";
     $result4 = $conn->query($sql4);
 
 
@@ -67,7 +67,6 @@ if(!isset($_SESSION['login_employee'])){
             $car_name = $row["car_name"];
             $car_nameplate = $row["car_nameplate"];
             $customer_name = $row["customer_username"];
-            $customer_gender = $row["customer_gender"];
             $dl_number = $row["dl_number"];
             $customer_phone = $row["customer_phone"];
             $employee_name = $row["employee_name"];
@@ -76,6 +75,7 @@ if(!isset($_SESSION['login_employee'])){
     }
 
     if (!$result1|!$result2){
+        
         die("Couldnt enter data: ".$conn->error);
     }
 
@@ -179,7 +179,15 @@ if(!isset($_SESSION['login_employee'])){
                 <br>
                 <h4> <strong>Vehicle Number:</strong> <?php echo $car_nameplate; ?></h4>
                 <br>               
-                <h4> <strong>Fare:</strong> Rs. <?php echo $fare; ?></h4>
+                <?php     
+                if($charge_type == "days"){
+                ?>
+                     <h4> <strong>Fare:</strong> <?php echo $fare; ?>Dirhams/day</h4>
+                <?php } else {
+                    ?>
+                    <h4> <strong>Fare:</strong> <?php echo $fare; ?>Dirhams/month</h4>
+
+                <?php } ?>
                 <br>
                 <h4> <strong>Booking Date: </strong> <?php echo date("Y-m-d"); ?> </h4>
                 <br>
@@ -187,11 +195,11 @@ if(!isset($_SESSION['login_employee'])){
                 <br>
                 <h4> <strong>Return Date: </strong> <?php echo $rent_end_date; ?></h4>
                 <br>
-                <h4> <strong>customer Name: </strong> <?php echo $customer_name; ?> </h4>
+                <h4> <strong>Customer Name: </strong> <?php echo $customer_name; ?> </h4>
                 <br>
-                <h4> <strong>customer License number: </strong>  <?php echo $dl_number; ?> </h4>
+                <h4> <strong>Customer License number: </strong>  <?php echo $dl_number; ?> </h4>
                 <br>
-                <h4> <strong>customer Contact:</strong>  <?php echo $customer_phone; ?></h4>
+                <h4> <strong>Customer Contact:</strong>  <?php echo $customer_phone; ?></h4>
                 <br>
                 <h4> <strong>Employee Name:</strong>  <?php echo $employee_name; ?></h4>
                 <br>
