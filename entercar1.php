@@ -108,7 +108,7 @@ function GetImageExtension($imagetype) {
 $car_name = $conn->real_escape_string($_POST['car_name']);
 $car_nameplate = $conn->real_escape_string($_POST['car_nameplate']);
 $car_regno = $conn->real_escape_string($_POST['car_regno']);
-$car_regname = $conn->real_escape_string($_POST['car_regname']);
+$car_regname = $_POST['employee_id_from_dropdown'];
 $model_year = $conn->real_escape_string($_POST['model_year']);
 $car_color = $conn->real_escape_string($_POST['car_color']);
 $rc_expiry = date('d-m-Y', strtotime($_POST['rc_expiry']));
@@ -172,9 +172,12 @@ else {
     ?>
     <div class = container>
     <div class="jumbotron" style="text-align: center;">
-            Car added successfully!</div></div>
+            Car added successfully!
+            <br><br>
+            <a href="entercar.php" class="btn btn-default"> Go Back </a>
+        </div></div>
     <?php
-    header("location: entercar.php"); //Redirecting 
+    //header("location: entercar.php"); //Redirecting 
 }
 
 $conn->close();

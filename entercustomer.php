@@ -87,7 +87,7 @@ include('session_employee.php'); ?>
     <div class="container" style="margin-top: 65px;" >
     <div class="col-md-7" style="float: none; margin: 0 auto;">
       <div class="form-area">
-        <form role="form" action="entercustomer1" method="POST">
+        <form role="form" action="entercustomer1.php" method="POST">
         <br style="clear: both">
           <h3 style="margin-bottom: 25px; text-align: center; font-size: 30px;"> Enter Customer Details </h3>
 
@@ -121,6 +121,8 @@ include('session_employee.php'); ?>
         <br style="clear: both">
           <h3 style="margin-bottom: 25px; text-align: center; font-size: 30px;"> My Customers </h3>
 <?php
+
+
 // Storing Session
 $user_check=$_SESSION['login_employee'];
 $sql = "SELECT * FROM customer";

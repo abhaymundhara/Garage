@@ -124,7 +124,7 @@ include('session_employee.php'); ?>
 
                     
                     <label>
-                    <h5>Reistered Name:
+                    <h5>Registered Name:
                 </label>
                     <select name="employee_id_from_dropdown" ng-model="myVar1">
                         <?php
@@ -138,7 +138,7 @@ include('session_employee.php'); ?>
                     ?>
 
 
-                        <option value="<?php echo($employee_id); ?>"><?php echo($employee_name); ?>
+                        <option value="<?php echo($employee_name); ?>"><?php echo($employee_name); ?>
 
 
                             <?php }}

@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title> customer Signup | Car Rentals </title>
+    <title> Customer Signup | Car Rentals </title>
 </head>
 <?php session_start(); ?>
 <link rel="shortcut icon" type="image/png" href="assets/img/P.png.png">
@@ -64,28 +64,7 @@
 
             <?php
                 }
-                else if (isset($_SESSION['login_customer'])){
-            ?>
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="index.php">Home</a>
-                    </li>
-                    <li>
-                        <a href="#"><span class="glyphicon glyphicon-user"></span> Welcome
-                            <?php echo $_SESSION['login_customer']; ?></a>
-                    </li>
-                    <li>
-                        <a href="#">History</a>
-                    </li>
-                    <li>
-                        <a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-                    </li>
-                </ul>
-            </div>
-
-            <?php
-            }
+                
                 else {
             ?>
 
@@ -115,26 +94,34 @@ require 'connection.php';
 $conn = Connect();
 
 $customer_name = $conn->real_escape_string($_POST['customer_name']);
-$dl_number = $conn->real_escape_string($_POST['dl_number']);
-$customer_phone = $conn->real_escape_string($_POST['customer_phone']);
-$customer_address = $conn->real_escape_string($_POST['customer_address']);
-$customer_city = $conn->real_escape_string($_POST['customer_city']);
-$employee_username = $_SESSION['login_employee'];
+$dl_number = ($_POST['dl_number']);
+$customer_phone = ($_POST['customer_phone']);
+$customer_address = ($_POST['customer_address']);
+$customer_city = ($_POST['customer_city']);
 
-$query = "INSERT into customer(customer_name,dl_number,customer_phone,customer_address,customer_city,employee_username) VALUES('" . $customer_name . "','" . $dl_number . "','" . $customer_phone . "','" . $customer_address . "','" . $customer_city ."','" . $employee_username ."')";
+
+$query = "INSERT into customer(customer_name,dl_number,customer_phone,customer_address,customer_city) VALUES('" . $customer_name . "','" . $dl_number . "','" . $customer_phone . "','" . $customer_address . "','" . $customer_city ."')";
 $success = $conn->query($query);
 
 if (!$success){ ?>
     <div class="container">
         <div class="jumbotron" style="text-align: center;">
-            Car with the same vehicle number already exists!
+            Failed to add!
             <br><br>
             <a href="entercustomer.php" class="btn btn-default"> Go Back </a>
         </div>
         <?php	
 }
 else {
-    header("location: entercustomer.php"); //Redirecting 
+    ?>
+    <div class = container>
+    <div class="jumbotron" style="text-align: center;">
+            Car added successfully!
+            <br><br>
+            <a href="entercustomer.php" class="btn btn-default"> Go Back </a>
+        </div></div>
+        <?php
+    
 }
 
 $conn->close();
