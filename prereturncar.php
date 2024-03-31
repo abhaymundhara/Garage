@@ -89,7 +89,7 @@ $conn = Connect();
  
 <?php $login_employee = $_SESSION['login_employee']; 
 
-    $sql1 = "SELECT c.car_name, rc.rent_start_date, rc.rent_end_date, rc.fare, rc.charge_type, rc.id FROM rentedcars rc, cars c
+    $sql1 = "SELECT c.car_name, rc.rent_start_date, rc.rent_end_date, rc.fare, rc.id, rc.charge_type FROM rentedcars rc, cars c
     WHERE c.car_id=rc.car_id AND rc.return_status='NR'";
     $result1 = $conn->query($sql1);
 
@@ -109,6 +109,7 @@ $conn = Connect();
 <th width="30%">Car</th>
 <th width="20%">Rent Start Date</th>
 <th width="20%">Rent End Date</th>
+<th width="20%">Charge Type</th>
 <th width="20%">Fare</th>
 <th width="10%">Action</th>
 </tr>
@@ -120,15 +121,15 @@ $conn = Connect();
 <td><?php echo $row["car_name"]; ?></td>
 <td><?php echo $row["rent_start_date"] ?></td>
 <td><?php echo $row["rent_end_date"]; ?></td>
-<td>Rs. <?php 
+<td><?php 
     if($row["charge_type"] == "days"){
         echo ($row["fare"] . "/day");
     } else {
-        echo ($row["fare"] . "/km");
+        echo ($row["fare"] . "/month");
     }
  
 
-?></td>
+?>Dirhams</td>
 <td><a href="returncar.php?id=<?php echo $row["id"];?>"> Return </a></td>
 </tr>
 <?php        } ?>

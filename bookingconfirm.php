@@ -29,10 +29,11 @@ if(!isset($_SESSION['login_employee'])){
     $customer_name = $_POST['customer_name_from_dropdown'];
     $customer_id = $conn->real_escape_string($_POST['hidden_customerid']);
     $car_id = $conn->real_escape_string($_POST['hidden_carid']);
-    $rent_start_date = date('d-m-Y', strtotime($_POST['rent_start_date']));
-    $rent_end_date = date('d-m-Y', strtotime($_POST['rent_end_date']));
+    $rent_start_date = date('Y-m-d', strtotime($_POST['rent_start_date']));
+    $rent_end_date = date('Y-m-d', strtotime($_POST['rent_end_date']));
     $return_status = "NR"; // not returned
     $fare = $_POST['fare'];
+    //$booking_date = date("Y-m-d"); 
 
 
     function dateDiff($start, $end) {
@@ -49,8 +50,8 @@ if(!isset($_SESSION['login_employee'])){
 
     
     if($err_date >= 0) { 
-    $sql1 = "INSERT into rentedcars(customer_username,car_id,customer_id,rent_start_date,rent_end_date,fare,return_status)
-    VALUES('" . $customer_name . "','" . $car_id . "','" . $customer_id . "','" . $rent_start_date ."','" . $rent_end_date . "','" . $fare . "', '" . $return_status . "')";
+    $sql1 = "INSERT into rentedcars(customer_username,car_id,customer_id,rent_start_date,rent_end_date,fare,return_status, booking_date, charge_type)
+    VALUES('" . $customer_name . "','" . $car_id . "','" . $customer_id . "','" . $rent_start_date ."','" . $rent_end_date . "','" . $fare . "', '" . $return_status . "', '" . date("Y-m-d") ."', '" . $charge_type . "')";
     $result1 = $conn->query($sql1);
 
     $sql2 = "UPDATE cars SET car_availability = 'no' WHERE car_id = '$car_id'";
@@ -69,14 +70,12 @@ if(!isset($_SESSION['login_employee'])){
             $customer_name = $row["customer_username"];
             $dl_number = $row["dl_number"];
             $customer_phone = $row["customer_phone"];
-            $employee_name = $row["employee_name"];
-            $employee_phone = $row["employee_phone"];
         }
     }
 
     if (!$result1|!$result2){
         
-        die("Couldnt enter data: ".$conn->error);
+        die("Couldn't enter data: ".$conn->error);
     }
 
     ?>
@@ -195,15 +194,13 @@ if(!isset($_SESSION['login_employee'])){
                 <br>
                 <h4> <strong>Return Date: </strong> <?php echo $rent_end_date; ?></h4>
                 <br>
+                <h4> <strong>Charge Type: </strong> <?php echo $charge_type; ?></h4>
+                <br>
                 <h4> <strong>Customer Name: </strong> <?php echo $customer_name; ?> </h4>
                 <br>
                 <h4> <strong>Customer License number: </strong>  <?php echo $dl_number; ?> </h4>
                 <br>
                 <h4> <strong>Customer Contact:</strong>  <?php echo $customer_phone; ?></h4>
-                <br>
-                <h4> <strong>Employee Name:</strong>  <?php echo $employee_name; ?></h4>
-                <br>
-                <h4> <strong>Employee Contact: </strong> <?php echo $employee_phone; ?></h4>
                 <br>
             </div>
         </div>

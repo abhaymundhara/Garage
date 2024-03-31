@@ -91,10 +91,10 @@ $conn = Connect();
 <?php 
 $id = $_GET["id"];
 $distance = NULL;
-$distance_or_days = $conn->real_escape_string($_POST['distance_or_days']);
+$months_or_days = $conn->real_escape_string($_POST['months_or_days']);
 $fare = $conn->real_escape_string($_POST['hid_fare']);
-$total_amount = $distance_or_days * $fare;
-$car_return_date = date('d-m-Y');
+$total_amount = $months_or_days * $fare;
+$car_return_date = $_POST['car_return_date'];
 $return_status = "R";
 $login_customer = $_SESSION['login_customer'];
 
@@ -121,17 +121,17 @@ function dateDiff($start, $end) {
 $extra_days = dateDiff("$rent_end_date", "$car_return_date");
 $total_fine = $extra_days*200;
 
-$duration = dateDiff("$rent_start_date","$rent_end_date");
+$duration = dateDiff("$rent_start_date","$car_return_date");
 
 if($extra_days>0) {
     $total_amount = $total_amount + $total_fine;  
 }
 
 if($charge_type == "days"){
-    $no_of_days = $distance_or_days;
+    $no_of_days = $months_or_days;
     $sql1 = "UPDATE rentedcars SET car_return_date='$car_return_date', no_of_days='$no_of_days', total_amount='$total_amount', return_status='$return_status' WHERE id = '$id' ";
 } else {
-    $distance = $distance_or_days;
+    $distance = $months_or_days;
     $sql1 = "UPDATE rentedcars SET car_return_date='$car_return_date', distance='$distance', no_of_days='$duration', total_amount='$total_amount', return_status='$return_status' WHERE id = '$id' ";
 }
 
@@ -179,7 +179,7 @@ else {
             if($charge_type == "days"){
                     echo ($fare . "/day");
                 } else {
-                    echo ($fare . "/km");
+                    echo ($fare . "/month");
                 }
             ?></h4>
                 <br>
@@ -192,9 +192,9 @@ else {
                 <h4> <strong>Car Return Date: </strong> <?php echo $car_return_date; ?> </h4>
                 <br>
                 <?php if($charge_type == "days"){?>
-                    <h4> <strong>Number of days:</strong> <?php echo $distance_or_days; ?>day(s)</h4>
+                    <h4> <strong>Number of days:</strong> <?php echo $months_or_days; ?>day(s)</h4>
                 <?php } else { ?>
-                    <h4> <strong>Distance Travelled:</strong> <?php echo $distance_or_days; ?>km(s)</h4>
+                    <h4> <strong>Number of months:</strong> <?php echo $months_or_days; ?>month(s)</h4>
                 <?php } ?>
                 <br>
                 <?php

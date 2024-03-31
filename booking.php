@@ -128,16 +128,16 @@ if(!isset($_SESSION['login_employee'])){
                     <h5> Number Plate:&nbsp;<b> <?php echo($car_nameplate);?></b></h5>
                     <!-- </div>      -->
                     <!-- <div class="form-group"> -->
-                    <?php $today = date("d-m-Y") ?>
+                    <?php $today = date("Y-m-d") ?>
                     <label>
                         <h5>Start Date:</h5>
                     </label>
-                    <input type="date" name="rent_start_date" min="<?php echo($today);?>" required="">
+                    <input type="date" name="rent_start_date"  required="">
                     &nbsp;
                     <label>
                         <h5>End Date:</h5>
                     </label>
-                    <input type="date" name="rent_end_date" min="<?php echo($today);?>" required="">
+                    <input type="date" name="rent_end_date"  required="">
                     <!-- </div>      -->
 
                     <!-- <h5> Choose your car type:  &nbsp;

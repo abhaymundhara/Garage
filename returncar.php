@@ -94,7 +94,7 @@ function dateDiff($start, $end) {
     return round($diff / 86400);
 }
  $id = $_GET["id"];
- $sql1 = "SELECT c.car_name, c.car_nameplate, rc.rent_start_date, rc.rent_end_date, rc.fare, rc.charge_type, d.customer_name, d.customer_phone
+ $sql1 = "SELECT c.car_name, c.car_nameplate, rc.rent_start_date, rc.rent_end_date, rc.car_return_date, rc.fare, rc.charge_type, d.customer_username, d.customer_phone
  FROM rentedcars rc, cars c, customer d
  WHERE id = '$id' AND c.car_id=rc.car_id AND d.customer_id = rc.customer_id";
  $result1 = $conn->query($sql1);
@@ -102,13 +102,13 @@ function dateDiff($start, $end) {
     while($row = mysqli_fetch_assoc($result1)) {
         $car_name = $row["car_name"];
         $car_nameplate = $row["car_nameplate"];
-        $customer_name = $row["customer_name"];
+        $customer_name = $row["customer_username"];
         $customer_phone = $row["customer_phone"];
         $rent_start_date = $row["rent_start_date"];
         $rent_end_date = $row["rent_end_date"];
         $fare = $row["fare"];
         $charge_type = $row["charge_type"];
-        $no_of_days = dateDiff("$rent_start_date", "$rent_end_date");
+        $no_of_days = dateDiff("$rent_start_date", "$car_return_date");
     }
 }
 ?>
@@ -128,14 +128,17 @@ function dateDiff($start, $end) {
 
            <h5> End Date:&nbsp;  <?php echo($rent_end_date);?></h5>
 
+           <h5> Charge Type:&nbsp;  <?php echo($charge_type);?></h5>
+
            <h5> Fare:&nbsp;  Rs. <?php echo($fare);?></h5>
         
-           <h5> customer Name:&nbsp;  <?php echo($customer_name);?></h5>
+           <h5> Customer Name:&nbsp;  <?php echo($customer_name);?></h5>
 
-           <h5> customer Contact:&nbsp;  <?php echo($customer_phone);?></h5>
-         
-           <h5> Number of Day(s):&nbsp;  <?php echo($no_of_days);?></h5>
-           <input type="hidden" name="distance_or_days" value="<?php echo $no_of_days; ?>">
+           <h5> Customer Contact:&nbsp;  <?php echo($customer_phone);?></h5>
+
+           <h5> Return Date:&nbsp;  <input type="date" name="car_return_date"  min="<?php echo($rent_start_date);?>" required=""></h5>
+           
+           <input type="hidden" name="months_or_days" value="<?php echo $no_of_days; ?>">
            <input type="hidden" name="hid_fare" value="<?php echo $fare; ?>">
 
            <input type="submit" name="submit" value="submit" class="btn btn-success pull-right">    

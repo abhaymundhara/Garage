@@ -119,7 +119,7 @@ else {
     ?>
     <div class = container>
     <div class="jumbotron" style="text-align: center;">
-            Car added successfully!
+            Customer added successfully!
             <br><br>
             <a href="entercustomer.php" class="btn btn-default"> Go Back </a>
         </div></div>
