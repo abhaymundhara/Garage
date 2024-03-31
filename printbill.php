@@ -90,15 +90,17 @@ $conn = Connect();
 
 <?php 
 $id = $_GET["id"];
-$distance = NULL;
 $months_or_days = $conn->real_escape_string($_POST['months_or_days']);
 $fare = $conn->real_escape_string($_POST['hid_fare']);
+$fare1 = $_POST['fare1'];
 $total_amount = $months_or_days * $fare;
 $car_return_date = $_POST['car_return_date'];
 $return_status = "R";
-$login_customer = $_SESSION['login_customer'];
+$extra_days = "0";
 
-$sql0 = "SELECT rc.id, rc.rent_end_date, rc.rent_start_date, c.car_name, c.car_nameplate FROM rentedcars rc, cars c WHERE id = '$id' AND c.car_id = rc.car_id";
+
+
+$sql0 = "SELECT rc.id, rc.rent_end_date, rc.rent_start_date, rc.charge_type, c.car_name, c.car_nameplate FROM rentedcars rc, cars c WHERE id = '$id' AND c.car_id = rc.car_id";
 $result0 = $conn->query($sql0);
 
 if(mysqli_num_rows($result0) > 0) {
@@ -107,7 +109,7 @@ if(mysqli_num_rows($result0) > 0) {
             $rent_start_date = $row0["rent_start_date"];
             $car_name = $row0["car_name"];
             $car_nameplate = $row0["car_nameplate"];
-            
+            $charge_type = $row["charge_type"];
     }
 }
 
@@ -115,31 +117,40 @@ function dateDiff($start, $end) {
     $start_ts = strtotime($start);
     $end_ts = strtotime($end);
     $diff = $end_ts - $start_ts;
+    if($charge_type=="days"){
     return round($diff / 86400);
+    }
+    else{
+        return round($diff / (86400*30));
+    }
 }
 
 $extra_days = dateDiff("$rent_end_date", "$car_return_date");
-$total_fine = $extra_days*200;
+
 
 $duration = dateDiff("$rent_start_date","$car_return_date");
+$duration = $duration+$extra_days;
 
 if($extra_days>0) {
-    $total_amount = $total_amount + $total_fine;  
+    $total_extra =$extra_days*$fare1;  
+    $total_amount = $total_amount+$total_extra;
 }
 
 if($charge_type == "days"){
     $no_of_days = $months_or_days;
+    echo $no_of_days;
     $sql1 = "UPDATE rentedcars SET car_return_date='$car_return_date', no_of_days='$no_of_days', total_amount='$total_amount', return_status='$return_status' WHERE id = '$id' ";
 } else {
-    $distance = $months_or_days;
-    $sql1 = "UPDATE rentedcars SET car_return_date='$car_return_date', distance='$distance', no_of_days='$duration', total_amount='$total_amount', return_status='$return_status' WHERE id = '$id' ";
+    $no_of_months = $months_or_days;
+    $sql1 = "UPDATE rentedcars SET car_return_date='$car_return_date', no_of_days='$no_of_months', total_amount='$total_amount', return_status='$return_status' WHERE id = '$id' ";
+    echo $no_of_months;
 }
 
 $result1 = $conn->query($sql1);
 
 if ($result1){
-     $sql2 = "UPDATE cars c, driver d, rentedcars rc SET c.car_availability='yes', d.driver_availability='yes' 
-     WHERE rc.car_id=c.car_id AND rc.driver_id=d.driver_id AND rc.customer_username = '$login_customer' AND rc.id = '$id'";
+     $sql2 = "UPDATE cars c, customer d, rentedcars rc SET c.car_availability='yes' 
+     WHERE rc.car_id=c.car_id AND rc.customer_id=d.customer_id AND rc.id = '$id'";
      $result2 = $conn->query($sql2);
 }
 else {
@@ -163,7 +174,7 @@ else {
         <h5 class="text-center">Please read the following information about your order.</h5>
         <div class="box">
             <div class="col-md-10" style="float: none; margin: 0 auto; text-align: center;">
-                <h3 style="color: orange;">Your booking has been received and placed into out order processing system.</h3>
+                <h3 style="color: orange;">Your booking has been received and placed into our order processing system.</h3>
                 <br>
                 <h4>Please make a note of your <strong>order number</strong> now and keep in the event you need to communicate with us about your order.</h4>
                 <br>
@@ -175,11 +186,11 @@ else {
                 <br>
                 <h4> <strong>Vehicle Number:</strong> <?php echo $car_nameplate; ?></h4>
                 <br>
-                <h4> <strong>Fare:&nbsp;</strong>  Rs. <?php 
+                <h4> <strong>Fare:&nbsp;</strong> <?php 
             if($charge_type == "days"){
-                    echo ($fare . "/day");
+                    echo ($fare . " Dirham/day");
                 } else {
-                    echo ($fare . "/month");
+                    echo ($fare . " Dirham/month");
                 }
             ?></h4>
                 <br>
@@ -201,10 +212,10 @@ else {
                     if($extra_days > 0){
                         
                 ?>
-                <h4> <strong>Total Fine:</strong> <label class="text-danger"> Rs. <?php echo $total_fine; ?>/- </label> for <?php echo $extra_days;?> extra days.</h4>
+                <h4> <strong>Surcharge:</strong> <label class="text-danger"> <?php echo $total_fine; ?>/- </label> for <?php echo $extra_days;?> extra days.</h4>
                 <br>
                 <?php } ?>
-                <h4> <strong>Total Amount: </strong> Rs. <?php echo $total_amount; ?>/-     </h4>
+                <h4> <strong>Total Amount: </strong> <?php echo $total_amount; echo $charge_type; ?>Dirhams/-     </h4>
                 <br>
             </div>
         </div>
