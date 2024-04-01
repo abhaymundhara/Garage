@@ -31,7 +31,7 @@ $conn = Connect();
             <!-- Collect the nav links, forms, and other content for toggling -->
 
             <?php
-                if(isset($_SESSION['login_client'])){
+                if(isset($_SESSION['login_employee'])){
             ?> 
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
                 <ul class="nav navbar-nav">
@@ -39,7 +39,7 @@ $conn = Connect();
                         <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="#"><span class="glyphicon glyphicon-user"></span> Welcome <?php echo $_SESSION['login_client']; ?></a>
+                        <a href="#"><span class="glyphicon glyphicon-user"></span> Welcome <?php echo $_SESSION['login_employee']; ?></a>
                     </li>
                     <li>
                     <ul class="nav navbar-nav navbar-right">
@@ -96,7 +96,7 @@ $fare1 = $_POST['fare1'];
 $total_amount = $months_or_days * $fare;
 $car_return_date = $_POST['car_return_date'];
 $return_status = "R";
-$extra_days = "0";
+$extra_days = $conn->real_escape_string($_POST['extra_days']);
 
 
 
@@ -121,15 +121,16 @@ function dateDiff($start, $end) {
     return round($diff / 86400);
     }
     else{
-        return round($diff / (86400*30));
+        return round(($diff / 86400)/30);
     }
 }
 
-$extra_days = dateDiff("$rent_end_date", "$car_return_date");
 
-
+if($extra_days>0){
 $duration = dateDiff("$rent_start_date","$car_return_date");
-$duration = $duration+$extra_days;
+}
+else
+$duration = dateDiff("$rent_start_date","$car_end_date");
 
 if($extra_days>0) {
     $total_extra =$extra_days*$fare1;  
@@ -138,7 +139,6 @@ if($extra_days>0) {
 
 if($charge_type == "days"){
     $no_of_days = $months_or_days;
-    echo $no_of_days;
     $sql1 = "UPDATE rentedcars SET car_return_date='$car_return_date', no_of_days='$no_of_days', total_amount='$total_amount', return_status='$return_status' WHERE id = '$id' ";
 } else {
     $no_of_months = $months_or_days;
@@ -203,16 +203,16 @@ else {
                 <h4> <strong>Car Return Date: </strong> <?php echo $car_return_date; ?> </h4>
                 <br>
                 <?php if($charge_type == "days"){?>
-                    <h4> <strong>Number of days:</strong> <?php echo $months_or_days; ?>day(s)</h4>
+                    <h4> <strong>Number of day(s):</strong> <?php echo $no_of_days; ?>day(s)</h4>
                 <?php } else { ?>
-                    <h4> <strong>Number of months:</strong> <?php echo $months_or_days; ?>month(s)</h4>
+                    <h4> <strong>Number of month(s):</strong> <?php echo $no_of_months; ?>month(s)</h4>
                 <?php } ?>
                 <br>
                 <?php
                     if($extra_days > 0){
                         
                 ?>
-                <h4> <strong>Surcharge:</strong> <label class="text-danger"> <?php echo $total_fine; ?>/- </label> for <?php echo $extra_days;?> extra days.</h4>
+                <h4> <strong>Surcharge:</strong> <label class="text-danger"> <?php echo $total_extra; ?>/- </label> for <?php echo $extra_days;?> extra days.</h4>
                 <br>
                 <?php } ?>
                 <h4> <strong>Total Amount: </strong> <?php echo $total_amount; echo $charge_type; ?>Dirhams/-     </h4>

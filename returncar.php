@@ -164,6 +164,7 @@ function dateDiff($start, $end) {
                 ?>
                     
                     <input type="hidden" name="months_or_days" value="<?php echo $no_of_days; ?>">
+                    <input type="hidden" name="extra_days" value="<?php echo $extra_days; ?>">
                     <input type="hidden" name="hid_fare" value="<?php echo $fare; ?>">
 
                     <input type="submit" name="submit" value="submit" class="btn btn-success pull-right">
