@@ -111,7 +111,7 @@ $conn = Connect();
 <th width="20%">Rent End Date</th>
 <th width="20%">Charge Type</th>
 <th width="20%">Fare</th>
-<th width="10%">Action</th>
+<!-- <th width="10%">Action</th> -->
 </tr>
 </thead>
 <?php
@@ -123,13 +123,13 @@ $conn = Connect();
 <td><?php echo $row["rent_end_date"]; ?></td>
 <td><?php 
     if($row["charge_type"] == "days"){
-        echo ($row["fare"] . "/day");
+        echo ($row["fare"] . " Dirhams/day");
     } else {
-        echo ($row["fare"] . "/month");
+        echo ($row["fare"] . " Dirhams/month");
     }
  
 
-?>Dirhams</td>
+?></td>
 <td><a href="returncar.php?id=<?php echo $row["id"];?>"> Return </a></td>
 </tr>
 <?php        } ?>

@@ -100,8 +100,7 @@ function dateDiff($start, $end) {
     return round($diff / 86400);
 }
  $id = $_GET["id"];
- $extra_days = NULL;
- $sql1 = "SELECT c.car_name, c.car_nameplate, rc.rent_start_date, rc.rent_end_date, rc.car_return_date, rc.fare, rc.fare1, rc.charge_type, d.customer_username, d.customer_phone
+ $sql1 = "SELECT c.car_name, c.car_nameplate, rc.rent_start_date, rc.rent_end_date, rc.car_return_date, rc.fare, rc.fare1, rc.charge_type, rc.no_of_days, d.customer_username, d.customer_phone
  FROM rentedcars rc, cars c, customer d
  WHERE id = '$id' AND c.car_id=rc.car_id AND d.customer_id = rc.customer_id";
  $result1 = $conn->query($sql1);
@@ -117,7 +116,7 @@ function dateDiff($start, $end) {
         $fare1 = $row["fare1"];
         $charge_type = $row["charge_type"];
         $no_of_days = dateDiff("$rent_start_date", "$car_return_date");
-        $extra_days = dateDiff("$rent_end_date", "$car_return_date");
+        //$extra_days = dateDiff("$rent_end_date", "$car_return_date");
     }
 }
 ?>
@@ -164,7 +163,7 @@ function dateDiff($start, $end) {
                 ?>
                     
                     <input type="hidden" name="months_or_days" value="<?php echo $no_of_days; ?>">
-                    <input type="hidden" name="extra_days" value="<?php echo $extra_days; ?>">
+                   
                     <input type="hidden" name="hid_fare" value="<?php echo $fare; ?>">
 
                     <input type="submit" name="submit" value="submit" class="btn btn-success pull-right">
