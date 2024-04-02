@@ -4,11 +4,9 @@
 
 **Recommended PHP Version 5.6.3 and 7.4.12**
 
-
-**Customer Login Details**
-
-Username: lucas
-Password: password
+**Admin Login Details**
+Username: abhay
+Password: abhay@admin
 
 
 **Employee Login Details**
