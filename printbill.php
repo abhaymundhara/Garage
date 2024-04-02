@@ -190,7 +190,7 @@ else {
                 <h4> <strong>Rent End Date: </strong> <?php echo $rent_end_date; ?></h4>
                 <br>
                 <h4> <strong>Car Return Date: </strong> <?php echo $car_return_date; ?> </h4>
-                <!-- esion -->
+                
                 <br>
                 <?php
                     if($extra_days > 0){
