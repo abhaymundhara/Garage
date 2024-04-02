@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<!-- print the bill. -->
 <?php 
 session_start();
 require 'connection.php';
