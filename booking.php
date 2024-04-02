@@ -144,26 +144,26 @@ if(!isset($_SESSION['login_employee'])){
             <input onclick="reveal()" type="radio" name="radio" value="ac" ng-model="myVar"> <b>With AC </b>&nbsp;
             <input onclick="reveal()" type="radio" name="radio" value="non_ac" ng-model="myVar"><b>With-Out AC </b> -->
 
-                    <h5> Charge type: &nbsp;
+                    <!-- <h5> Charge type: &nbsp;
                         <input onclick="reveal()" type="radio" name="radio1" value="days" ng-model="myVar"><b> per day</b> &nbsp;
-                        <input onclick="reveal()" type="radio" name="radio1" value="months" ng-model="myVar"><b> per month</b>
+                        <input onclick="reveal()" type="radio" name="radio1" value="months" ng-model="myVar"><b> per month</b> -->
                         
                         <div ng-switch="myVar">
                             <div ng-switch-default>
                                 <!-- <div class="form-group"> -->
-                                <h5>Fare: <h5>
+                                <h5>Fare: <b><input type="text" id="fare" name="fare" required> Dirhams/day</b></h5>
                                         <!-- </div>    -->
                             </div>
-                            <div ng-switch-when="days">
+                            <!-- <div ng-switch-when="days"> -->
                                 <!-- <div class="form-group"> -->
-                                <h5>Fare: <b><input type="text" id="fare" name="fare" required> Dirhams/day</b>
+                                <!-- <h5>Fare: <b><input type="text" id="fare" name="fare" required> Dirhams/day</b> -->
                                         <!-- </div>    -->
-                            </div>
-                            <div ng-switch-when="months">
+                            <!-- </div> -->
+                            <!-- <div ng-switch-when="months"> -->
                                 <!-- <div class="form-group"> -->
-                                <h5>Fare: <b><input type="text" id="fare" name="fare" required> Dirhams/month</b>
+                                <!-- <h5>Fare: <b><input type="text" id="fare" name="fare" required> Dirhams/month</b> -->
                                         <!-- </div>   -->
-                            </div>
+                            <!-- </div> -->
                         </div>
 
                        
@@ -224,8 +224,7 @@ if(!isset($_SESSION['login_employee'])){
 
             </div>
             <div class="col-md-12" style="float: none; margin: 0 auto; text-align: center;">
-                <h6><strong>Note:</strong> You will be charged with extra <span class="text-danger">Rs. 500</span> for
-                    each day after the due date ends.</h6>
+                
             </div>
         </div>
 

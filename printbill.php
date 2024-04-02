@@ -100,7 +100,7 @@ $extra_days = "0";
 
 
 
-$sql0 = "SELECT rc.id, rc.rent_end_date, rc.rent_start_date, rc.car_return_date, rc.charge_type, rc.no_of_days, c.car_name, c.car_nameplate FROM rentedcars rc, cars c WHERE id = '$id' AND c.car_id = rc.car_id";
+$sql0 = "SELECT rc.id, rc.rent_end_date, rc.rent_start_date, rc.car_return_date, rc.no_of_days, c.car_name, c.car_nameplate FROM rentedcars rc, cars c WHERE id = '$id' AND c.car_id = rc.car_id";
 $result0 = $conn->query($sql0);
 
 if(mysqli_num_rows($result0) > 0) {
@@ -109,7 +109,6 @@ if(mysqli_num_rows($result0) > 0) {
             $rent_start_date = $row0["rent_start_date"];
             $car_name = $row0["car_name"];
             $car_nameplate = $row0["car_nameplate"];
-            $charge_type = $row0["charge_type"];
     }
 }
 
@@ -134,26 +133,9 @@ else if($extra_days<0){
     $total_amount = $fare * $no_of_days;
 }
 
-// $extra_days = dateDiff("$rent_end_date", "$car_return_date");
-// if($extra_days>0){
-// $duration = dateDiff("$rent_start_date","$car_return_date");
-// }
-// else
-// $duration = dateDiff("$rent_start_date","$car_end_date");
-
-// if($extra_days>0) {
-//     $total_extra =$extra_days*$fare1;  
-//     $total_amount = $total_amount+$total_extra;
-// }
-
-if($charge_type == "days"){
     
-    $sql1 = "UPDATE rentedcars SET car_return_date='$car_return_date', no_of_days='$no_of_days', total_amount='$total_amount', return_status='$return_status' WHERE id = '$id' ";
-} else {
+$sql1 = "UPDATE rentedcars SET car_return_date='$car_return_date', no_of_days='$no_of_days', total_amount='$total_amount', return_status='$return_status' WHERE id = '$id' ";
 
-    $sql1 = "UPDATE rentedcars SET car_return_date='$car_return_date', no_of_days='$no_of_days', total_amount='$total_amount', return_status='$return_status' WHERE id = '$id' ";
-    
-}
 
 $result1 = $conn->query($sql1);
 
@@ -196,11 +178,7 @@ else {
                 <h4> <strong>Vehicle Number:</strong> <?php echo $car_nameplate; ?></h4>
                 <br>
                 <h4> <strong>Fare:&nbsp;</strong> <?php 
-            if($charge_type == "days"){
                     echo ($fare . " Dirham/day");
-                } else {
-                    echo ($fare . " Dirham/month");
-                }
             ?></h4>
                 <br>
                 <h4> <strong>Booking Date: </strong> <?php echo date("Y-m-d"); ?> </h4>
@@ -212,12 +190,6 @@ else {
                 <h4> <strong>Rent End Date: </strong> <?php echo $rent_end_date; ?></h4>
                 <br>
                 <h4> <strong>Car Return Date: </strong> <?php echo $car_return_date; ?> </h4>
-                <br>
-                <?php if($charge_type == "days"){?>
-                    <h4> <strong>Number of day(s):</strong> <?php echo $no_of_days; ?>day(s)</h4>
-                <?php } else { ?>
-                    <h4> <strong>Number of month(s):</strong> <?php echo $no_of_days; ?>month(s)</h4>
-                <?php } ?>
                 <br>
                 <?php
                     if($extra_days > 0){

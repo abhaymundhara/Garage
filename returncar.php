@@ -100,7 +100,7 @@ function dateDiff($start, $end) {
     return round($diff / 86400);
 }
  $id = $_GET["id"];
- $sql1 = "SELECT c.car_name, c.car_nameplate, rc.rent_start_date, rc.rent_end_date, rc.car_return_date, rc.fare, rc.fare1, rc.charge_type, rc.no_of_days, d.customer_username, d.customer_phone
+ $sql1 = "SELECT c.car_name, c.car_nameplate, rc.rent_start_date, rc.rent_end_date, rc.car_return_date, rc.fare, rc.fare1, rc.no_of_days, d.customer_username, d.customer_phone
  FROM rentedcars rc, cars c, customer d
  WHERE id = '$id' AND c.car_id=rc.car_id AND d.customer_id = rc.customer_id";
  $result1 = $conn->query($sql1);
@@ -114,7 +114,7 @@ function dateDiff($start, $end) {
         $rent_end_date = $row["rent_end_date"];
         $fare = $row["fare"];
         $fare1 = $row["fare1"];
-        $charge_type = $row["charge_type"];
+       // $charge_type = $row["charge_type"];
         $no_of_days = dateDiff("$rent_start_date", "$car_return_date");
         //$extra_days = dateDiff("$rent_end_date", "$car_return_date");
     }
@@ -148,19 +148,9 @@ function dateDiff($start, $end) {
                     <h5> Return Date:&nbsp; <input type="date" name="car_return_date"
                             min="<?php echo($rent_start_date);?>" required=""></h5>
 
-                    <?php
-                    if($charge_type=="days"){
-                        
-                ?>
+                    
                 <h5>Extra Fare: <b><input type="text" id="fare1" name="fare1"> Dirhams/day</b>
-                    <?php
-                  }
-                       else if($charge_type=="months"){
-                ?>
-                    <h5>Extra Fare: <b><input type="text" id="fare1" name="fare1"> Dirhams/month</b>
-                <?php 
-                       }
-                ?>
+                 
                     
                     <input type="hidden" name="months_or_days" value="<?php echo $no_of_days; ?>">
                    
