@@ -100,7 +100,7 @@ $extra_days = "0";
 
 
 
-$sql0 = "SELECT rc.id, rc.rent_end_date, rc.rent_start_date, rc.car_return_date, rc.no_of_days, c.car_name, c.car_nameplate FROM rentedcars rc, cars c WHERE id = '$id' AND c.car_id = rc.car_id";
+$sql0 = "SELECT rc.id, rc.rent_end_date, rc.rent_start_date, rc.car_return_date, c.car_name, c.car_nameplate FROM rentedcars rc, cars c WHERE id = '$id' AND c.car_id = rc.car_id";
 $result0 = $conn->query($sql0);
 
 if(mysqli_num_rows($result0) > 0) {
