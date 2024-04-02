@@ -137,8 +137,6 @@ function dateDiff($start, $end) {
 
                     <h5> End Date:&nbsp; <?php echo($rent_end_date);?></h5>
 
-                    <h5> Charge Type:&nbsp; <?php echo($charge_type);?></h5>
-
                     <h5> Fare:&nbsp; <?php echo($fare);?> Dirhams</h5>
 
                     <h5> Customer Name:&nbsp; <?php echo($customer_name);?></h5>
