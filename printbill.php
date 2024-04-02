@@ -183,8 +183,6 @@ else {
                 <br>
                 <h4> <strong>Booking Date: </strong> <?php echo date("Y-m-d"); ?> </h4>
                 <br>
-                <h5> Charge Type:&nbsp; <?php echo($charge_type);?></h5>
-                <br>
                 <h4> <strong>Start Date: </strong> <?php echo $rent_start_date; ?></h4>
                 <br>
                 <h4> <strong>Rent End Date: </strong> <?php echo $rent_end_date; ?></h4>
