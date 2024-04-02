@@ -28,7 +28,7 @@ $conn = Connect();
                 <a class="navbar-brand page-scroll" href="index.php">
                    Car Rentals </a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
+            
 
             <?php
                 if(isset($_SESSION['login_employee'])){
