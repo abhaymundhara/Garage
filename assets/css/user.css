@@ -264,12 +264,12 @@ a:hover {
 }
 
 .bgimg-1 {
-  background-image: url("../../assets/img/renbg.jpg");
+  background-image: url("../../assets/img/bg01.jpg");
   min-height: 100%;
 }
 
 .bgimg-2 {
-  background-image: url("../../assets/img/carweb.jpg");
+  background-image: url("../../assets/img/bg02.jpg");
   min-height: 400px;
 }
 
