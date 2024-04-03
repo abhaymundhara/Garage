@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
 require 'connection.php';
 $conn = Connect();
@@ -86,17 +88,18 @@ $conn = Connect();
         </div>
         <!-- /.container -->
     </nav>
-<body>
+
 
 <?php 
 $id = $_GET["id"];
 $months_or_days = $_POST['months_or_days'];
 $fare = $conn->real_escape_string($_POST['hid_fare']);
-$fare1 = $_POST['fare1'];
+$fare1 = $conn->real_escape_string($_POST['fare1']);
 $total_amount = "0";
+$total_fine= "0";
 $car_return_date = $_POST['car_return_date'];
 $return_status = "R";
-$extra_days = "0";
+
 
 
 
@@ -121,11 +124,12 @@ function dateDiff($start, $end) {
 
 $no_of_days = dateDiff("$rent_start_date", "$car_return_date");
 $extra_days = dateDiff("$rent_end_date", "$car_return_date");
-$total_fine = $extra_days*$fare1;
+
 
 $duration = dateDiff("$rent_start_date","$rent_end_date");
 
 if($extra_days>0) {
+    $total_fine = $fare1 * $extra_days;
     $total_amount = $fare * $duration;
     $total_amount = $total_amount + $total_fine;  
 }
