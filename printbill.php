@@ -129,7 +129,7 @@ if($extra_days>0) {
     $total_amount = $fare * $duration;
     $total_amount = $total_amount + $total_fine;  
 }
-else if($extra_days<0){
+else {
     $total_amount = $fare * $no_of_days;
 }
 

@@ -98,6 +98,7 @@ if(!isset($_SESSION['login_employee'])){
         <!-- /.container -->
     </nav>
 
+
     <div class="container" style="margin-top: 65px;">
         <div class="col-md-7" style="float: none; margin: 0 auto;">
             <div class="form-area">
@@ -132,12 +133,12 @@ if(!isset($_SESSION['login_employee'])){
                     <label>
                         <h5>Start Date:</h5>
                     </label>
-                    <input type="date" name="rent_start_date"  required="">
+                    <input type="date" name="rent_start_date" required="">
                     &nbsp;
                     <label>
                         <h5>End Date:</h5>
                     </label>
-                    <input type="date" name="rent_end_date"  required="">
+                    <input type="date" name="rent_end_date" required="">
                     <!-- </div>      -->
 
                     <!-- <h5> Choose your car type:  &nbsp;
@@ -147,33 +148,34 @@ if(!isset($_SESSION['login_employee'])){
                     <!-- <h5> Charge type: &nbsp;
                         <input onclick="reveal()" type="radio" name="radio1" value="days" ng-model="myVar"><b> per day</b> &nbsp;
                         <input onclick="reveal()" type="radio" name="radio1" value="months" ng-model="myVar"><b> per month</b> -->
-                        
-                        <div ng-switch="myVar">
-                            <div ng-switch-default>
-                                <!-- <div class="form-group"> -->
-                                <h5>Fare: <b><input type="text" id="fare" name="fare" required> Dirhams/day</b></h5>
-                                        <!-- </div>    -->
-                            </div>
-                            <!-- <div ng-switch-when="days"> -->
-                                <!-- <div class="form-group"> -->
-                                <!-- <h5>Fare: <b><input type="text" id="fare" name="fare" required> Dirhams/day</b> -->
-                                        <!-- </div>    -->
-                            <!-- </div> -->
-                            <!-- <div ng-switch-when="months"> -->
-                                <!-- <div class="form-group"> -->
-                                <!-- <h5>Fare: <b><input type="text" id="fare" name="fare" required> Dirhams/month</b> -->
-                                        <!-- </div>   -->
-                            <!-- </div> -->
+
+                    <div ng-switch="myVar">
+                        <div ng-switch-default>
+                            <!-- <div class="form-group"> -->
+                            <h5>Fare: <b><input type="text" id="fare" name="fare" required> Dirhams/day</b></h5>
+                            <!-- </div>    -->
                         </div>
+                        <!-- <div ng-switch-when="days"> -->
+                        <!-- <div class="form-group"> -->
+                        <!-- <h5>Fare: <b><input type="text" id="fare" name="fare" required> Dirhams/day</b> -->
+                        <!-- </div>    -->
+                        <!-- </div> -->
+                        <!-- <div ng-switch-when="months"> -->
+                        <!-- <div class="form-group"> -->
+                        <!-- <h5>Fare: <b><input type="text" id="fare" name="fare" required> Dirhams/month</b> -->
+                        <!-- </div>   -->
+                        <!-- </div> -->
+                    </div>
 
-                       
 
 
-                        <br>
-                        <!-- <form class="form-group"> -->
-                        Select a customer: &nbsp;
-                        <select name="customer_name_from_dropdown" ng-model="myVar1">
-                            <?php
+
+                    <br>
+                    <!-- <form class="form-group"> -->
+                    Select a customer: &nbsp;
+        
+                    <select name="customer_id_from_dropdown" ng-model="myVar1">
+                        <?php
                         $sql2 = "SELECT * FROM customer ";
                         $result2 = mysqli_query($conn, $sql2);
 
@@ -184,19 +186,19 @@ if(!isset($_SESSION['login_employee'])){
                                 $customer_phone = $row2["customer_phone"];
                     ?>
 
+                        <option value="<?php echo($customer_id); ?>"><?php echo($customer_name); ?>
 
-                            <option value="<?php echo($customer_name); ?>"><?php echo($customer_name); ?>
 
-
-                                <?php }} 
+                            <?php }} 
                     
                     ?>
-                        </select>
-                        <!-- </form> -->
-                        <div ng-switch="myVar1">
+
+                    </select>
+                    <!-- </form> -->
+                    <div ng-switch="myVar1">
 
 
-                            <?php
+                        <?php
                         $sql3 = "SELECT * FROM customer ";
                         $result3 = mysqli_query($conn, $sql3);
 
@@ -209,22 +211,23 @@ if(!isset($_SESSION['login_employee'])){
 
                 ?>
 
-                            <div ng-switch-when="<?php echo($customer_id); ?>">
-                                <h5>Customer Name:&nbsp; <b><?php echo($customer_name); ?></b></h5>
-                                <p>Contact:&nbsp; <b><?php echo($customer_phone); ?></b> </p>
-                            </div>
-                            <?php }} ?>
+                        <div ng-switch-when="<?php echo($customer_id); ?>">
+                            <h5>Customer Name:&nbsp; <b><?php echo($customer_name); ?></b></h5>
+                            <p>Contact:&nbsp; <b><?php echo($customer_phone); ?></b> </p>
+                            <h5>Customer ID:&nbsp; <b><?php echo($customer_id); ?></b></h5>
                         </div>
-                        <input type="hidden" name="hidden_carid" value="<?php echo $car_id; ?>">
-                        <input type="hidden" name="hidden_customerid" value="<?php echo $customer_id; ?>">
+                        <?php }} ?>
+                    </div>
+                    <input type="hidden" name="hidden_carid" value="<?php echo $car_id; ?>">
 
 
-                        <input type="submit" name="submit" value="Rent Now" class="btn btn-warning pull-right">
+
+                    <input type="submit" name="submit" value="Rent Now" class="btn btn-warning pull-right">
                 </form>
 
             </div>
             <div class="col-md-12" style="float: none; margin: 0 auto; text-align: center;">
-                
+
             </div>
         </div>
 

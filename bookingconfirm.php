@@ -25,9 +25,8 @@ if(!isset($_SESSION['login_employee'])){
     <?php
 
 
-    // $charge_type = $_POST['radio1'];
-    $customer_name = $_POST['customer_name_from_dropdown'];
-    $customer_id = $conn->real_escape_string($_POST['hidden_customerid']);
+    
+    $customer_id = $_POST['customer_id_from_dropdown'];
     $car_id = $conn->real_escape_string($_POST['hidden_carid']);
     $rent_start_date = date('Y-m-d', strtotime($_POST['rent_start_date']));
     $rent_end_date = date('Y-m-d', strtotime($_POST['rent_end_date']));
@@ -48,10 +47,26 @@ if(!isset($_SESSION['login_employee'])){
     $sql0 = "SELECT * FROM cars WHERE car_id = '$car_id'";
     $result0 = $conn->query($sql0);
 
+    $sql5 = "SELECT * FROM customer WHERE customer_id = '$customer_id'";
+    $result5 = $conn->query($sql5);
+   
+    if ($result5) { // Check if the query was successful
+        if ($result5->num_rows > 0) { // Check if there are any rows returned
+            while ($row = $result5->fetch_assoc()) { // Fetch each row as an associative array
+                $customer_name = $row["customer_username"];
+                // Now $customer_name should contain the value of customer_username
+            }
+        } else {
+            echo "No rows returned.";
+        }
+    } else {
+        echo "Error: " . $conn->error;
+    }
+
     
     if($err_date >= 0) { 
-    $sql1 = "INSERT into rentedcars(customer_username,car_id,customer_id,rent_start_date,rent_end_date,fare,return_status, booking_date, charge_type)
-    VALUES('" . $customer_name . "','" . $car_id . "','" . $customer_id . "','" . $rent_start_date ."','" . $rent_end_date . "','" . $fare . "', '" . $return_status . "', '" . date("Y-m-d") ."', '" . $charge_type . "')";
+    $sql1 = "INSERT into rentedcars(customer_username,car_id,customer_id,rent_start_date,rent_end_date,fare,return_status,booking_date)
+    VALUES('" . $customer_name . "','" . $car_id . "','" . $customer_id . "','" . $rent_start_date ."','" . $rent_end_date . "','" . $fare . "', '" . $return_status . "', '" . date("Y-m-d") ."')";
     $result1 = $conn->query($sql1);
 
     $sql2 = "UPDATE cars SET car_availability = 'no' WHERE car_id = '$car_id'";
