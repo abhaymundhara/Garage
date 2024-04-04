@@ -88,7 +88,7 @@ $conn = Connect();
  
 <?php $login_employee = $_SESSION['login_employee']; 
 
-    $sql1 = "SELECT * FROM rentedcars rc, customer c, cars WHERE  c.customer_username = rc.customer_username AND rc.car_id = cars.car_id";
+    $sql1 = "SELECT * FROM rentedcars rc, customer c, cars WHERE  c.customer_username = rc.customer_username AND rc.car_id = cars.car_id AND rc.return_status = 'NR'";
 
     $result1 = $conn->query($sql1);
 
