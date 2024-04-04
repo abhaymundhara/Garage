@@ -50,7 +50,7 @@ if(isset($_SESSION['login_employee'])){
                                     <ul class="dropdown-menu">
                                         <li> <a href="entercar.php">Add Car</a></li>
                                         <li> <a href="entercustomer.php"> Add Customer</a></li>
-                                        <li> <a href="employeeview.php">View</a></li>
+                                        <li> <a href="fine&toll.php">View</a></li>
                                         <li> <a href="prereturncar.php">Return Now</a></li>
                                         <li> <a href="mybookings.php"> My Bookings</a></li>
                                     </ul>
