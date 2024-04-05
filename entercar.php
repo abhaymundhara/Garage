@@ -51,7 +51,7 @@ include('session_employee.php'); ?>
                                 <ul class="dropdown-menu">
                                     <li> <a href="entercar.php">Add Car</a></li>
                                     <li> <a href="entercustomer.php"> Add Customer</a></li>
-                                    <li> <a href="employeeview.php">View</a></li>
+                                    <li> <a href="employeeview.php">Data Entry</a></li>
                                     <li> <a href="prereturncar.php">Return Now</a></li>
                                     <li> <a href="mybookings.php"> My Bookings</a></li>
 
