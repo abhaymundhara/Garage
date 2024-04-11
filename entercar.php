@@ -117,14 +117,14 @@ include('session_employee.php'); ?>
 
                     <div class="form-group">
                         <label>
-                            <h5>Car Registered Number:</h5>
+                            <h5>Vehicle Identification Number :</h5>
                         </label>
                         <input type="text" id="car_regno" name="car_regno" required>
                     </div>
 
                     
                     <label>
-                    <h5>Registered Name:
+                    <h5>Registered in the Name:
                 </label>
                     <select name="employee_id_from_dropdown" ng-model="myVar1">
                         <?php
