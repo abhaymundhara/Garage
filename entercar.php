@@ -110,7 +110,7 @@ include('session_employee.php'); ?>
 
                     <div class="form-group">
                         <label>
-                            <h5>Car NumberPlate:</h5>
+                            <h5>Car Number Plate:</h5>
                         </label>
                         <input type="text" id="car_nameplate" name="car_nameplate" required>
                     </div>
