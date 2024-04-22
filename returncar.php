@@ -42,14 +42,12 @@ $conn = Connect();
         window.addEventListener('load', function() {
             console.log ('perfect')
             // Add event listener when the DOM content is loaded
-            document.addEventListener("DOMContentLoaded", function () {
-            // Get the input field element
-            console.log ('yep')
+            
             var inputField = document.getElementById("car_return_date");
 
             // Add event listener for the change event
             inputField.addEventListener("change", handleChange);
-        });
+   
 });
        
     </script>
