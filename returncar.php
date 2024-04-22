@@ -22,6 +22,7 @@ $conn = Connect();
         // Function to calculate date difference and update display
         function handleChange(event) {
             var inputValue = event.target.value; // Get return date value
+            console.log ('handler called', inputValue)
             var rentStartDate = "<?php echo $rent_start_date; ?>"; // Get rental start date from PHP
             var diffInDays = dateDiff(rentStartDate, inputValue); // Calculate date difference
             document.getElementById("no_of_days").innerText = diffInDays; // Update no of days display
