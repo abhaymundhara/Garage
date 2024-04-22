@@ -39,15 +39,17 @@ $conn = Connect();
             var diff = endTs - startTs;
             return Math.round(diff / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
         }
-
-        // Add event listener when the DOM content is loaded
-        document.addEventListener("DOMContentLoaded", function () {
+        window.addEventListener('load', function() {
+   // Add event listener when the DOM content is loaded
+   document.addEventListener("DOMContentLoaded", function () {
             // Get the input field element
             var inputField = document.getElementById("car_return_date");
 
             // Add event listener for the change event
             inputField.addEventListener("change", handleChange);
         });
+});
+       
     </script>
 
 </head>
