@@ -147,7 +147,7 @@ function dateDiff($start, $end) {
 
                     <h5> Customer Contact:&nbsp; <?php echo($customer_phone);?></h5>
 
-                    <h5> Return Date:&nbsp; <input type="date" name="car_return_date"
+                    <h5> Return Date:&nbsp; <input type="date" id="car_return_date" name="car_return_date"
                             min="<?php echo($rent_start_date);?>" required=""></h5>
                      
                     <?php $No_of_Day = ($car_return_date - $rent_start_date);
