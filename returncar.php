@@ -156,7 +156,7 @@ function dateDiff($start, $end) {
                     
                           $Gross_Amt = ($No_of_Day * $fare) ?>
                     <h5> No of Days :&nbsp; <span id="no_of_days"></span></h5>
-                    <h5 style="visibility:hidden"> Amount :&nbsp; <span id="amount"></span></h5>
+                    <h5 > Amount :&nbsp; <span id="amount"></span></h5>
 
                 <div id="discount-element" style="visibility:hidden">
                 <h5>Discount: <b><input type="text" id="discount" name="discount" value="0"> Dirhams</b>
