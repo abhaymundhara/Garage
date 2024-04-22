@@ -18,39 +18,7 @@ $conn = Connect();
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/clientpage.css" />
 
 
-    <script type="text/javascript">
-        // Function to calculate date difference and update display
-        function handleChange(event) {
-            var inputValue = event.target.value; // Get return date value
-            console.log ('handler called', inputValue)
-            var rentStartDate = "<?php echo $rent_start_date; ?>"; // Get rental start date from PHP
-            var diffInDays = dateDiff(rentStartDate, inputValue); // Calculate date difference
-            document.getElementById("no_of_days").innerText = diffInDays; // Update no of days display
-
-            var fare = "<?php echo $fare; ?>"; // Get fare from PHP
-            var grossAmt = diffInDays * fare; // Calculate gross amount
-            document.getElementById("amount").innerText = grossAmt; // Update amount display
-        }
-
-        // Function to calculate date difference
-        function dateDiff(start, end) {
-            var startTs = new Date(start).getTime();
-            var endTs = new Date(end).getTime();
-            var diff = endTs - startTs;
-            return Math.round(diff / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
-        }
-        window.addEventListener('load', function() {
-            console.log ('perfect')
-            // Add event listener when the DOM content is loaded
-            
-            var inputField = document.getElementById("car_return_date");
-
-            // Add event listener for the change event
-            inputField.addEventListener("change", handleChange);
-   
-});
-       
-    </script>
+  
 
 </head>
 
@@ -203,6 +171,40 @@ function dateDiff($start, $end) {
         </div>
 
     </div>
+
+    <script type="text/javascript">
+        // Function to calculate date difference and update display
+        function handleChange(event) {
+            var inputValue = event.target.value; // Get return date value
+            console.log ('handler called', inputValue)
+            var rentStartDate = "<?php echo $rent_start_date; ?>"; // Get rental start date from PHP
+            var diffInDays = dateDiff(rentStartDate, inputValue); // Calculate date difference
+            document.getElementById("no_of_days").innerText = diffInDays; // Update no of days display
+
+            var fare = "<?php echo $fare; ?>"; // Get fare from PHP
+            var grossAmt = diffInDays * fare; // Calculate gross amount
+            document.getElementById("amount").innerText = grossAmt; // Update amount display
+        }
+
+        // Function to calculate date difference
+        function dateDiff(start, end) {
+            var startTs = new Date(start).getTime();
+            var endTs = new Date(end).getTime();
+            var diff = endTs - startTs;
+            return Math.round(diff / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
+        }
+        window.addEventListener('load', function() {
+            console.log ('perfect')
+            // Add event listener when the DOM content is loaded
+            
+            var inputField = document.getElementById("car_return_date");
+
+            // Add event listener for the change event
+            inputField.addEventListener("change", handleChange);
+   
+});
+       
+    </script>
 
 </body>
 <footer class="site-footer">
