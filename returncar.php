@@ -187,7 +187,7 @@ function dateDiff($start, $end) {
                     <h5> No of Days :&nbsp; <?php echo($No_of_Day);?></h5>
                     <h5> Amount :&nbsp; <?php echo($Gross_Amt);?></h5>
                 <h5>Extra Fare: <b><input type="text" id="fare1" name="fare1"> Dirhams/day</b>
-                <h5> Final Amount :&nbsp; <?php echo($customer_phone);?></h5>
+                <h5> Final Amount :&nbsp; <?php echo($Gross_Amt+ $fare1);?></h5>
 
                     
                     <input type="hidden" name="months_or_days" value="<?php echo $no_of_days; ?>">
