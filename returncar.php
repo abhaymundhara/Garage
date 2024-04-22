@@ -156,7 +156,7 @@ function dateDiff($start, $end) {
                     
                           $Gross_Amt = ($No_of_Day * $fare) ?>
                     <h5> No of Days :&nbsp; <span id="no_of_days"></span></h5>
-                    <h5> Amount :&nbsp; <?php echo($Gross_Amt);?></h5>
+                    <h5> Amount :&nbsp; <span id="amount"></span></h5>
                 <h5>Extra Fare: <b><input type="text" id="fare1" name="fare1"> Dirhams/day</b>
                 <h5> Final Amount :&nbsp; <?php echo($Gross_Amt+ $fare1);?></h5>
 
