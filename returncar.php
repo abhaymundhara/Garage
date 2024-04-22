@@ -193,9 +193,9 @@ function dateDiff($start, $end) {
         }
 
         function handleDiscountChange(event) {
-            var discountAmount = event.target.value; // Get return date value
-            var initial_amt = parseDouble(document.getElementById("amount").innerText); //initial amount
-            var finalamt = parseDouble(discountAmount) + initial_amt ;
+            var discountAmount = parseFloat(event.target.value); // Get return date value
+            var initial_amt = parseFloat(document.getElementById("amount").innerText); //initial amount
+            var finalamt = Math.round((discountAmount + initial_amt),2) ;
             document.getElementById("final_amount").innerText = finalamt; // Update final amount display
         }
 
