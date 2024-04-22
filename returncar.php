@@ -196,9 +196,9 @@ function dateDiff($start, $end) {
 
         function handleDiscountChange(event) {
 
-            var discountAmount = parseFloat(document.getElementById("discount")); // Get discount value
-            var tollAmount = parseFloat(document.getElementById("tolls")); // Get toll value
-            var fineAmount = parseFloat(document.getElementById("fines")); // Get fine value
+            var discountAmount = parseFloat(document.getElementById("discount").value); // Get discount value
+            var tollAmount = parseFloat(document.getElementById("tolls").value); // Get toll value
+            var fineAmount = parseFloat(document.getElementById("fines").value); // Get fine value
 
             var initial_amt = parseFloat(document.getElementById("amount").innerText); //initial amount
             var finalamt = Math.round((discountAmount + tollAmount + fineAmount + initial_amt),2) ;
