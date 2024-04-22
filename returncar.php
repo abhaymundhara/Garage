@@ -158,11 +158,11 @@ function dateDiff($start, $end) {
                     <h5> No of Days :&nbsp; <span id="no_of_days"></span></h5>
                     <h5> Amount :&nbsp; <span id="amount"></span></h5>
 
-                <span id="discount-element" style="visibility:hidden">
+                <div id="discount-element" style="visibility:hidden">
                 <h5>Discount: <b><input type="text" id="discount" name="discount"> Dirhams</b>
-</span>
-                <h5> Final Amount :&nbsp; <?php echo($Gross_Amt+ $fare1);?></h5>
-
+                
+                <h5> Final Amount :&nbsp; <span id="final_amount"></span></h5>
+</div>
                     
                     <input type="hidden" name="months_or_days" value="<?php echo $no_of_days; ?>">
                    
@@ -192,6 +192,14 @@ function dateDiff($start, $end) {
             document.getElementById("discount-element").style.visibility="visible";
         }
 
+        function handleDiscountChange(event) {
+            var discountAmount = event.target.value; // Get return date value
+            var initial_amt = document.getElementById("amount").innerText; //initial amount
+            var finalamt = discountAmount + initial_amt ;
+            document.getElementById("final_amount").innerText = finalamt; // Update final amount display
+        }
+
+
         // Function to calculate date difference
         function dateDiff(start, end) {
             var startTs = new Date(start).getTime();
@@ -207,7 +215,8 @@ function dateDiff($start, $end) {
 
             // Add event listener for the change event
             inputField.addEventListener("change", handleChange);
-   
+            var discamt = document.getElementById("discount");
+            discamt.addEventListener("change", handleDiscountChange);
 });
        
     </script>
