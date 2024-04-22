@@ -170,6 +170,8 @@ function dateDiff($start, $end) {
                    
                     <input type="hidden" name="hid_fare" value="<?php echo $fare; ?>">
 
+                    <input type="hidden" name="amount_final" value="final_amount">
+
                     <input type="submit" name="submit" value="submit" class="btn btn-success pull-right">
                 </form>
             </div>
