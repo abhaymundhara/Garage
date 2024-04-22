@@ -40,9 +40,11 @@ $conn = Connect();
             return Math.round(diff / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
         }
         window.addEventListener('load', function() {
-   // Add event listener when the DOM content is loaded
-   document.addEventListener("DOMContentLoaded", function () {
+            console.log ('perfect')
+            // Add event listener when the DOM content is loaded
+            document.addEventListener("DOMContentLoaded", function () {
             // Get the input field element
+            console.log ('yep')
             var inputField = document.getElementById("car_return_date");
 
             // Add event listener for the change event
