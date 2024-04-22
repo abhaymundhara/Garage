@@ -95,7 +95,7 @@ $id = $_GET["id"];
 $months_or_days = $_POST['months_or_days'];
 $fare = $conn->real_escape_string($_POST['hid_fare']);
 $fare1 = $conn->real_escape_string($_POST['fare1']);
-$total_amount = "0";
+$total_amount = $_POST['final_amount'];
 $total_fine= "0";
 $car_return_date = $_POST['car_return_date'];
 $return_status = "R";
@@ -128,14 +128,14 @@ $extra_days = dateDiff("$rent_end_date", "$car_return_date");
 
 $duration = dateDiff("$rent_start_date","$rent_end_date");
 
-if($extra_days>0) {
-    $total_fine = $fare1 * $extra_days;
-    $total_amount = $fare * $duration;
-    $total_amount = $total_amount + $total_fine;  
-}
-else {
-    $total_amount = $fare * $no_of_days;
-}
+// if($extra_days>0) {
+//     $total_fine = $fare1 * $extra_days;
+//     $total_amount = $fare * $duration;
+//     $total_amount = $total_amount + $total_fine;  
+// }
+// else {
+//     $total_amount = $fare * $no_of_days;
+// }
 
     
 $sql1 = "UPDATE rentedcars SET car_return_date='$car_return_date', no_of_days='$no_of_days', total_amount='$total_amount', return_status='$return_status' WHERE id = '$id' ";
