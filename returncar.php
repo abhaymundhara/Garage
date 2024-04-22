@@ -159,7 +159,9 @@ function dateDiff($start, $end) {
                     <h5> Amount :&nbsp; <span id="amount"></span></h5>
 
                 <div id="discount-element" style="visibility:hidden">
-                <h5>Discount: <b><input type="text" id="discount" name="discount"> Dirhams</b>
+                <h5>Discount: <b><input type="text" id="discount" name="discount" value="0"> Dirhams</b>
+                <h5>Tolls: <b><input type="text" id="tolls" name="tolls" value="0"> Dirhams</b>
+                <h5>Fines: <b><input type="text" id="fines" name="fines" value="0"> Dirhams</b>
                 
                 <h5> Final Amount :&nbsp; <span id="final_amount"></span></h5>
 </div>
@@ -193,9 +195,13 @@ function dateDiff($start, $end) {
         }
 
         function handleDiscountChange(event) {
-            var discountAmount = parseFloat(event.target.value); // Get return date value
+
+            var discountAmount = parseFloat(document.getElementById("discount")); // Get discount value
+            var tollAmount = parseFloat(document.getElementById("tolls")); // Get toll value
+            var fineAmount = parseFloat(document.getElementById("fines")); // Get fine value
+
             var initial_amt = parseFloat(document.getElementById("amount").innerText); //initial amount
-            var finalamt = Math.round((discountAmount + initial_amt),2) ;
+            var finalamt = Math.round((discountAmount + tollAmount + fineAmount + initial_amt),2) ;
             document.getElementById("final_amount").innerText = finalamt; // Update final amount display
         }
 
@@ -217,6 +223,11 @@ function dateDiff($start, $end) {
             inputField.addEventListener("change", handleChange);
             var discamt = document.getElementById("discount");
             discamt.addEventListener("change", handleDiscountChange);
+            var toll_amt = document.getElementById("tolls");
+            toll_amt.addEventListener("change", handleDiscountChange);
+            var fine_amt = document.getElementById("fines");
+            fine_amt.addEventListener("change", handleDiscountChange);
+
 });
        
     </script>
