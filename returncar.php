@@ -189,7 +189,7 @@ function dateDiff($start, $end) {
             document.getElementById("amount").innerText = grossAmt; // Update amount display
 
 
-            document.getELementById("discount-element").style.visibility="visible";
+            document.getElementById("discount-element").style.visibility="visible";
         }
 
         // Function to calculate date difference
