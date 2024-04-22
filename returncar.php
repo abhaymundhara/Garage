@@ -170,7 +170,9 @@ function dateDiff($start, $end) {
                    
                     <input type="hidden" name="hid_fare" value="<?php echo $fare; ?>">
 
-                    <input type="hidden" name="amount_final" value="final_amount">
+
+
+                    <input type="hidden" id="amount_final" name="amount_final" value="0">
 
                     <input type="submit" name="submit" value="submit" class="btn btn-success pull-right">
                 </form>
@@ -192,7 +194,7 @@ function dateDiff($start, $end) {
             var grossAmt = (diffInDays * fare); // Calculate gross amount
             document.getElementById("amount").innerText = grossAmt.toFixed(2); // Update amount display
 
-
+            document.getElementById("amount_final").value = grossAmt.toFixed(2);
             document.getElementById("discount-element").style.visibility="visible";
         }
 
@@ -205,6 +207,7 @@ function dateDiff($start, $end) {
             var initial_amt = parseFloat(document.getElementById("amount").innerText); //initial amount
             var finalamt = Math.round((discountAmount + tollAmount + fineAmount + initial_amt),2) ;
             document.getElementById("final_amount").innerText = finalamt; // Update final amount display
+            document.getElementById("amount_final").value = finalamt;
         }
 
 
