@@ -229,7 +229,7 @@ function dateDiff($start, $end) {
             toll_amt.addEventListener("change", handleDiscountChange);
             var fine_amt = document.getElementById("fines");
             fine_amt.addEventListener("change", handleDiscountChange);
-
+            inputField.dispatchEvent(new Event('change'));
 });
        
     </script>
