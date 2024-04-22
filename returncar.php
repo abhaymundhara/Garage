@@ -157,7 +157,10 @@ function dateDiff($start, $end) {
                           $Gross_Amt = ($No_of_Day * $fare) ?>
                     <h5> No of Days :&nbsp; <span id="no_of_days"></span></h5>
                     <h5> Amount :&nbsp; <span id="amount"></span></h5>
-                <h5>Extra Fare: <b><input type="text" id="fare1" name="fare1"> Dirhams/day</b>
+
+                <div id="discount-element" style="visibility:hidden">
+                <h5>Discount: <b><input type="text" id="discount" name="discount"> Dirhams</b>
+</div>
                 <h5> Final Amount :&nbsp; <?php echo($Gross_Amt+ $fare1);?></h5>
 
                     
@@ -184,6 +187,9 @@ function dateDiff($start, $end) {
             var fare = "<?php echo $fare; ?>"; // Get fare from PHP
             var grossAmt = diffInDays * fare; // Calculate gross amount
             document.getElementById("amount").innerText = grossAmt; // Update amount display
+
+
+            document.getELementById("discount-element").style.visibility="visible";
         }
 
         // Function to calculate date difference
