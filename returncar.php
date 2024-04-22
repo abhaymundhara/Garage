@@ -194,8 +194,8 @@ function dateDiff($start, $end) {
 
         function handleDiscountChange(event) {
             var discountAmount = event.target.value; // Get return date value
-            var initial_amt = parseInt(document.getElementById("amount").innerText); //initial amount
-            var finalamt = discountAmount + initial_amt ;
+            var initial_amt = parseDouble(document.getElementById("amount").innerText); //initial amount
+            var finalamt = parseDouble(discountAmount) + initial_amt ;
             document.getElementById("final_amount").innerText = finalamt; // Update final amount display
         }
 
