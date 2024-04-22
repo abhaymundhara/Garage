@@ -158,9 +158,9 @@ function dateDiff($start, $end) {
                     <h5> No of Days :&nbsp; <span id="no_of_days"></span></h5>
                     <h5> Amount :&nbsp; <span id="amount"></span></h5>
 
-                <div id="discount-element" style="visibility:hidden">
+                <span id="discount-element" style="visibility:hidden">
                 <h5>Discount: <b><input type="text" id="discount" name="discount"> Dirhams</b>
-</div>
+</span>
                 <h5> Final Amount :&nbsp; <?php echo($Gross_Amt+ $fare1);?></h5>
 
                     
