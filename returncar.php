@@ -16,6 +16,39 @@ $conn = Connect();
     <script type="text/javascript" src="assets/js/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/clientpage.css" />
+
+
+    <script type="text/javascript">
+        // Function to calculate date difference and update display
+        function handleChange(event) {
+            var inputValue = event.target.value; // Get return date value
+            var rentStartDate = "<?php echo $rent_start_date; ?>"; // Get rental start date from PHP
+            var diffInDays = dateDiff(rentStartDate, inputValue); // Calculate date difference
+            document.getElementById("no_of_days").innerText = diffInDays; // Update no of days display
+
+            var fare = "<?php echo $fare; ?>"; // Get fare from PHP
+            var grossAmt = diffInDays * fare; // Calculate gross amount
+            document.getElementById("amount").innerText = grossAmt; // Update amount display
+        }
+
+        // Function to calculate date difference
+        function dateDiff(start, end) {
+            var startTs = new Date(start).getTime();
+            var endTs = new Date(end).getTime();
+            var diff = endTs - startTs;
+            return Math.round(diff / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
+        }
+
+        // Add event listener when the DOM content is loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the input field element
+            var inputField = document.getElementById("car_return_date");
+
+            // Add event listener for the change event
+            inputField.addEventListener("change", handleChange);
+        });
+    </script>
+
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -146,10 +179,10 @@ function dateDiff($start, $end) {
                     <h5> Return Date:&nbsp; <input type="date" name="car_return_date"
                             min="<?php echo($rent_start_date);?>" required=""></h5>
                      
-
+                    <?php $No_of_Day = ($car_return_date - $rent_start_date);
                     
 
-                    <?php $No_of_Day = ($car_return_date - $rent_start_date);
+                    
                           $Gross_Amt = ($No_of_Day * $fare) ?>
                     <h5> No of Days :&nbsp; <?php echo($No_of_Day);?></h5>
                     <h5> Amount :&nbsp; <?php echo($Gross_Amt);?></h5>
