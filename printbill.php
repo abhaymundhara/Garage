@@ -94,7 +94,7 @@ $conn = Connect();
 $id = $_GET["id"];
 $months_or_days = $_POST['months_or_days'];
 $fare = $conn->real_escape_string($_POST['hid_fare']);
-$fare1 = $conn->real_escape_string($_POST['fare1']);
+
 $total_amount = $_POST['amount_final'];
 $total_fine= "0";
 $car_return_date = $_POST['car_return_date'];
