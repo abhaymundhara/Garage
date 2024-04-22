@@ -185,8 +185,8 @@ function dateDiff($start, $end) {
             document.getElementById("no_of_days").innerText = diffInDays; // Update no of days display
 
             var fare = "<?php echo $fare; ?>"; // Get fare from PHP
-            var grossAmt = diffInDays * fare; // Calculate gross amount
-            document.getElementById("amount").innerText = Math.round(grossAmt, 3); // Update amount display
+            var grossAmt = (diffInDays * fare); // Calculate gross amount
+            document.getElementById("amount").innerText = grossAmt.toFixed(2); // Update amount display
 
 
             document.getElementById("discount-element").style.visibility="visible";
