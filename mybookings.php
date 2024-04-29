@@ -129,7 +129,7 @@ $conn = Connect();
         while($row = mysqli_fetch_assoc($result1)) {
 ?>
             <tr>
-                <td><?php echo $row["car_name"]; ?></td>
+                <td><?php echo $row["car_name"]; echo $row["car_regno"]; ?></td>
                 <td><?php echo $row["customer_username"]; ?></td>
                 <td><?php echo $row["rent_start_date"] ?></td>
                 <td><?php echo $row["rent_end_date"]; ?></td>
@@ -140,7 +140,7 @@ $conn = Connect();
             ?></td>
 
                 <td><?php echo $row["return_status"]; ?> </td>
-                <td>Rs. <?php echo $row["total_amount"]; ?></td>
+                <td><?php echo $row["total_amount"]; ?> Dirhams</td>
             </tr>
             <?php        } ?>
         </table>
