@@ -129,7 +129,7 @@ $conn = Connect();
         while($row = mysqli_fetch_assoc($result1)) {
 ?>
             <tr>
-                <td><?php echo $row["car_name"];?> <br><?php echo $row["car_regno"]; ?></td>
+                <td><?php echo $row["car_name"];?> <br><?php echo $row["car_nameplate"]; ?></td>
                 <td><?php echo $row["customer_username"]; ?></td>
                 <td><?php echo $row["rent_start_date"] ?></td>
                 <td><?php echo $row["rent_end_date"]; ?></td>
