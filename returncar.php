@@ -199,7 +199,8 @@ function dateDiff($start, $end) {
         }
 
         function handleDiscountChange(event) {
-
+            var inputValue = event.target.value; // Get return date value
+            console.log ('handler2 called', inputValue)
             var discountAmount = parseFloat(document.getElementById("discount").value); // Get discount value
             var tollAmount = parseFloat(document.getElementById("tolls").value); // Get toll value
             var fineAmount = parseFloat(document.getElementById("fines").value); // Get fine value
