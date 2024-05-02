@@ -194,7 +194,7 @@ function dateDiff($start, $end) {
             var grossAmt = (diffInDays * fare); // Calculate gross amount
             document.getElementById("amount").innerText = grossAmt.toFixed(2); // Update amount display
 
-            document.getElementById("amount_final").value = grossAmt.toFixed(2);
+            //document.getElementById("amount_final").value = grossAmt.toFixed(2);
             document.getElementById("discount-element").style.visibility="visible";
         }
 
