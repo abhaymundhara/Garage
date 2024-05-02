@@ -205,6 +205,7 @@ function dateDiff($start, $end) {
             var fineAmount = parseFloat(document.getElementById("fines").value); // Get fine value
 
             var initial_amt = parseFloat(document.getElementById("amount").innerText); //initial amount
+            var rentStartDate = "<?php echo $rent_start_date; ?>"; // Get rental start date from PHP
             var diffInDays = dateDiff(rentStartDate, inputValue); // Calculate date difference
             var grossAmt = (diffInDays * fare); // Calculate gross amount
             var finalamt = Math.round((discountAmount + tollAmount + fineAmount + grossAmt),2) ;
