@@ -148,7 +148,7 @@ function dateDiff($start, $end) {
                     <h5> Customer Contact:&nbsp; <?php echo($customer_phone);?></h5>
 
                     <h5> Return Date:&nbsp; <input type="date" id="car_return_date" name="car_return_date"
-                            min="<?php echo($rent_start_date);?>"  required=""></h5>
+                            min="<?php echo($rent_start_date);?>"  value="<?php echo($rent_end_date);?>" required=""></h5>
                      
                     <?php $No_of_Day = ($car_return_date - $rent_start_date);
                     
@@ -194,7 +194,7 @@ function dateDiff($start, $end) {
             var grossAmt = (diffInDays * fare); // Calculate gross amount
             document.getElementById("amount").innerText = grossAmt.toFixed(2); // Update amount display
 
-            //document.getElementById("amount_final").value = grossAmt.toFixed(2);
+            document.getElementById("amount_final").value = grossAmt.toFixed(2);
             document.getElementById("discount-element").style.visibility="visible";
         }
 
@@ -205,12 +205,7 @@ function dateDiff($start, $end) {
             var fineAmount = parseFloat(document.getElementById("fines").value); // Get fine value
 
             var initial_amt = parseFloat(document.getElementById("amount").innerText); //initial amount
-            var inputValue = document.getElementById("car_return_date").innerText;
-            console.log('xyz', inputValue)
-            var rentStartDate = "<?php echo $rent_start_date; ?>"; // Get rental start date from PHP
-            var diffInDays = dateDiff(rentStartDate, inputValue); // Calculate date difference
-            var grossAmt = (diffInDays * fare); // Calculate gross amount
-            var finalamt = Math.round((discountAmount + tollAmount + fineAmount + grossAmt),2) ;
+            var finalamt = Math.round((discountAmount + tollAmount + fineAmount + initial_amt),2) ;
             document.getElementById("final_amount").innerText = finalamt; // Update final amount display
             document.getElementById("amount_final").value = finalamt;
         }
