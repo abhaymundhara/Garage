@@ -205,7 +205,8 @@ function dateDiff($start, $end) {
             var fineAmount = parseFloat(document.getElementById("fines").value); // Get fine value
 
             var initial_amt = parseFloat(document.getElementById("amount").innerText); //initial amount
-            var finalamt = Math.round((discountAmount + tollAmount + fineAmount + initial_amt),2) ;
+            var grossAmt = (diffInDays * fare); // Calculate gross amount
+            var finalamt = Math.round((discountAmount + tollAmount + fineAmount + grossAmt),2) ;
             document.getElementById("final_amount").innerText = finalamt; // Update final amount display
             document.getElementById("amount_final").value = finalamt;
         }
