@@ -118,7 +118,7 @@ $conn = Connect();
                     <th width="15%">Car</th>
                     <th width="15%">Customer Name</th>
                     <th width="15%">Start Date</th>
-                    <th width="15%">End Date</th>
+                    <th width="15%">Return Date</th>
                     <th width="10%">Fare</th>
                     
                     <th width="10%">Return Status</th>
@@ -132,7 +132,7 @@ $conn = Connect();
                 <td><?php echo $row["car_name"];?> <br><?php echo $row["car_nameplate"]; ?></td>
                 <td><?php echo $row["customer_username"]; ?></td>
                 <td><?php echo $row["rent_start_date"] ?></td>
-                <td><?php echo $row["rent_end_date"]; ?></td>
+                <td><?php echo $row["car_return_date"]; ?></td>
                 <td><?php 
             
                     echo ($row["fare"] . " Dirhams/day");
